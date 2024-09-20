@@ -21,13 +21,12 @@ func main() {
 		fmt.Println("Usage: timer -h=1 -m=30 -s=10")
 		return
 	}
-//3
+
 	s := spinner.New(spinner.CharSets[7], 1* time.Second)
 	s.Start()
 
 	totalSeconds := (*hours * 3600) + (*minutes * 60) + *seconds
 	for totalSeconds > 0  {
-		s.Start()
 		hs := totalSeconds / 3600
 		mins := (totalSeconds % 3600) / 60
 		sec := totalSeconds % 60
@@ -42,7 +41,7 @@ func main() {
 }
 
 func playAlarm() {
-	cmd := exec.Command("afplay", "/System/Library/Sounds/Glass.aiff") // Zmień na wybrany dźwięk
+	cmd := exec.Command("afplay", "/System/Library/Sounds/Glass.aiff")
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println("Błąd podczas odtwarzania alarmu:", err)
